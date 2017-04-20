@@ -8,14 +8,19 @@ def preberi(file):
     return text
 
 def frekvenca(besedilo):
+    """presteje stevilo ponovitev dveh zaporednih crk v besedilu
+    in jih na koncu deli z dolzino besedila"""
     i = 0
     slovar = {}
-    for i in range(len(besedilo)-1):
+    dol = len(besedilo)
+    for i in range(dol-1):
         kljuc = besedilo[i] + besedilo[i+1]
         if kljuc in slovar:
             slovar[kljuc] += 1
         else:
             slovar[kljuc] = 1
+    for kljuc in slovar:
+        slovar[kljuc] = slovar[kljuc] / dol 
     return slovar
 
 besedilo = preberi("blackcat.txt")
