@@ -23,8 +23,7 @@ def frekvenca(besedilo):
         slovar[kljuc] = slovar[kljuc] / dol 
     return slovar
 
-besedilo = preberi("blackcat.txt")
-frekvence = frekvenca(besedilo)
-print(frekvence)
+#besedilo = preberi("blackcat.txt")
+#frekvence = frekvenca(besedilo)
 
             
