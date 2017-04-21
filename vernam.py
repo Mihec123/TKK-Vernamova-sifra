@@ -11,7 +11,16 @@ def razlika(kriptogram, kljuc):
             besedilo += abeceda_to_str[(abeceda_to_int[kriptogram[i]] - abeceda_to_int[kljuc[i]]) % 26 ]
     return besedilo
 
-def verjetnost(kljuc,kriptogrami,porazdelitev,minimum = pow(10,-80)):
+def vsota(besedilo,kljuc):
+    """danemu besedilu priredi kriptogram"""
+    kriptogram = ""
+    if len(besedilo) == len(kljuc):
+        for i in range(len(kljuc)):
+            kriptogram += abeceda_to_str[(abeceda_to_int[kriptogram[i]] + abeceda_to_int[kljuc[i]]) % 26 ]
+    return kriptogram
+    
+
+def verjetnost(kljuc,kriptogrami,porazdelitev,minimum = pow(10,-77)):
     """izracuna verjetnost kljuca glede na dano porazdelitev parov crk porazdelitev je
     slovar parov crk in verjetnosti da ti nastopata skupaj"""
     verjetnost = 1
@@ -51,51 +60,52 @@ poraz = fc.frekvenca(besedilo)
 slovar = {}
 stevec = 0
 
+nic = -7
 
 for a in range(26):
     for b in range(26):
         kljuc_temp = abeceda_to_str[a] + abeceda_to_str[b]
-        if verjetnost(kljuc_temp,[kripto1[0:2],kripto2[0:2],kripto3[0:2]],poraz, pow(10,-7)) == 0:
+        if verjetnost(kljuc_temp,[kripto1[0:2],kripto2[0:2],kripto3[0:2]],poraz, pow(10,nic)) == 0:
             continue
         for c in range(26):
             kljuc_temp = abeceda_to_str[b] + abeceda_to_str[c]
-            if verjetnost(kljuc_temp,[kripto1[1:3],kripto2[1:3],kripto3[1:3]],poraz,pow(10,-7)) == 0:
+            if verjetnost(kljuc_temp,[kripto1[1:3],kripto2[1:3],kripto3[1:3]],poraz,pow(10,nic)) == 0:
                 continue
             for d in range(26):
                 kljuc_temp = abeceda_to_str[c] + abeceda_to_str[d]
-                if verjetnost(kljuc_temp,[kripto1[2:4],kripto2[2:4],kripto3[2:4]],poraz,pow(10,-7)) == 0:
+                if verjetnost(kljuc_temp,[kripto1[2:4],kripto2[2:4],kripto3[2:4]],poraz,pow(10,nic)) == 0:
                     continue           
                 for e in range(26):
                     kljuc_temp = abeceda_to_str[d] + abeceda_to_str[e]
-                    if verjetnost(kljuc_temp,[kripto1[3:5],kripto2[3:5],kripto3[3:5]],poraz,pow(10,-7)) == 0:
+                    if verjetnost(kljuc_temp,[kripto1[3:5],kripto2[3:5],kripto3[3:5]],poraz,pow(10,nic)) == 0:
                         continue
                     for f in range(26):
                         kljuc_temp = abeceda_to_str[e] + abeceda_to_str[f]
-                        if verjetnost(kljuc_temp,[kripto1[4:6],kripto2[4:6],kripto3[4:6]],poraz,pow(10,-7)) == 0:
+                        if verjetnost(kljuc_temp,[kripto1[4:6],kripto2[4:6],kripto3[4:6]],poraz,pow(10,nic)) == 0:
                             continue
                         for g in range(26):
                             kljuc_temp = abeceda_to_str[f] + abeceda_to_str[g]
-                            if verjetnost(kljuc_temp,[kripto1[5:7],kripto2[5:7],kripto3[5:7]],poraz,pow(10,-7)) == 0:
+                            if verjetnost(kljuc_temp,[kripto1[5:7],kripto2[5:7],kripto3[5:7]],poraz,pow(10,nic)) == 0:
                                 continue                            
                             for h in range(26):
                                 kljuc_temp = abeceda_to_str[g] + abeceda_to_str[h]
-                                if verjetnost(kljuc_temp,[kripto1[6:8],kripto2[6:8],kripto3[6:8]],poraz,pow(10,-7)) == 0:
+                                if verjetnost(kljuc_temp,[kripto1[6:8],kripto2[6:8],kripto3[6:8]],poraz,pow(10,nic)) == 0:
                                     continue                                
                                 for i in range(26):
                                     kljuc_temp = abeceda_to_str[h] + abeceda_to_str[i]
-                                    if verjetnost(kljuc_temp,[kripto1[7:9],kripto2[7:9],kripto3[7:9]],poraz,pow(10,-7)) == 0:
+                                    if verjetnost(kljuc_temp,[kripto1[7:9],kripto2[7:9],kripto3[7:9]],poraz,pow(10,nic)) == 0:
                                         continue  
                                     for j in range(26):
                                         kljuc_temp = abeceda_to_str[i] + abeceda_to_str[j]
-                                        if verjetnost(kljuc_temp,[kripto1[8:10],kripto2[8:10],kripto3[8:10]],poraz,pow(10,-7)) == 0:
+                                        if verjetnost(kljuc_temp,[kripto1[8:10],kripto2[8:10],kripto3[8:10]],poraz,pow(10,nic)) == 0:
                                             continue                                          
                                         for k in range(26):
                                             kljuc_temp = abeceda_to_str[j] + abeceda_to_str[k]
-                                            if verjetnost(kljuc_temp,[kripto1[9:11],kripto2[9:11],kripto3[9:11]],poraz,pow(10,-7)) == 0:
+                                            if verjetnost(kljuc_temp,[kripto1[9:11],kripto2[9:11],kripto3[9:11]],poraz,pow(10,nic)) == 0:
                                                 continue                                               
                                             for l in range(26):
                                                 kljuc_temp = abeceda_to_str[k] + abeceda_to_str[l]
-                                                if verjetnost(kljuc_temp,[kripto1[10:12],kripto2[10:12],kripto3[10:12]],poraz,pow(10,-7)) == 0:
+                                                if verjetnost(kljuc_temp,[kripto1[10:12],kripto2[10:12],kripto3[10:12]],poraz,pow(10,nic)) == 0:
                                                     continue                                                 
                                                 for m in range(26):
                                                     kljuc = abeceda_to_str[a] + abeceda_to_str[b] + abeceda_to_str[c] + abeceda_to_str[d] + abeceda_to_str[e] \
@@ -103,13 +113,15 @@ for a in range(26):
                                                     + abeceda_to_str[k] + abeceda_to_str[l] + abeceda_to_str[m]
                                                     ver = verjetnost(kljuc,[kripto1,kripto2,kripto3],poraz)
                                                     if ver > 0:
-                                                        print(kljuc)
                                                         slovar[kljuc]=ver
-                                                        
-                                                    
-    
-    
-    
-    
-    
+seznam_des = []
+for kljuc in slovar:
+    seznam_des.append((razlika(kripto1, kljuc),razlika(kripto2, kljuc),razlika(kripto3, kljuc)))
 
+print(seznam_des)
+
+#resitev
+#'thisisstrange'
+#'repeatafterme'
+#'wheninthecomp'
+#kljuc: 'ieajaxpqkqltx'
